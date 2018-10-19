@@ -20,8 +20,9 @@ function fireAddTrain(inputObject) {
 }
 
 //firebase listener function to read from firebase, write to DOM, and write back to firebase
+
 database.ref().on("child_added", function (childSnapshot) {
     var childSnapshotData = childSnapshot.val();
     console.log(childSnapshotData);
     return childSnapshotData;
-});
+}); 

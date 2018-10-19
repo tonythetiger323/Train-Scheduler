@@ -10,10 +10,10 @@ submitButton.on("click", function (event) {
     event.stopPropagation();
 });
 
-//using moment.js to convert times so they can be used to make calculations
-function momentCalculations(childSnapsnotData) {
+//using moment.js with data returned from firebase to convert times so they can be used to make calculations
+function momentCalculations(returnedData) {
     //converts train times from military time to 12 hour format and stores it to a variable
-    var momentFirstTrain = moment(childSnapshotData.firstTrainTime, "hh:mm");
+    var momentFirstTrain = moment(returnedData.firstTrainTime, "hh:mm");
     console.log(momentFirstTrain);
     //stores cuurent time into a variable
     var presentTime = moment();
@@ -22,10 +22,10 @@ function momentCalculations(childSnapsnotData) {
     var timeBetweenTrains = moment().diff(moment(momentFirstTrain), "minutes");
     console.log(timeBetweenTrains);
     //get the remainder of diving time between trains in minutes divided by the train frequency which is the first variable needed to determine homw many minutes until the next train arrives
-    var minutesRemain = timeBetweenTrains % childSnapshotData.frequency;
+    var minutesRemain = timeBetweenTrains % returnedData.frequency;
     console.log(minutesRemain);
     //find out how many minutes until the next train arrives and stores it to a variable
-    var minNextTrain = childSnapshotData.frequency - minutesRemain;
+    var minNextTrain = returnedData.frequency - minutesRemain;
     console.log(minNextTrain);
     //get the time the next train arrives by taking the current time and adding how many minutes til next train to it
     var nextTrainTime = moment().add(minNextTrain);
@@ -33,15 +33,19 @@ function momentCalculations(childSnapsnotData) {
     //format time back 12 hr
     var timeAmPm = moment(nextTraintime.format("hh:mm"));
     console.log(timeAmPm);
+
+    var newRow = $("<tr>").append(
+        $("<td>").text(trainName),
+        $("<td>").text(destination),
+        $("<td>").text(frequency),
+        $("<td>").text(timeAmPm),
+        $("<td>").text(minNextTrain)
+    );
+
+    $("#train-table > tbody").append(newRow);
 }
 
-
-
-
-
-
-
-
+momentCalculations(childSnapshotData);
 
 
 
