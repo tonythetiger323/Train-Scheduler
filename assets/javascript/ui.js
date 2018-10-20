@@ -10,13 +10,14 @@ function getUserInput() {
     var destination = $("#destination").val().trim();
     var firstTrainTime = $("#firstTrainTime").val().trim();
     var frequency = $("#frequency").val().trim();
+
     if (validateUserInput(trainName) && validateUserInput(destination) && validateUserInput(firstTrainTime) && validateUserInput(frequency)) {
 
         var newTrain = {
-            "trainName": trainName,
-            "destination": destination,
-            "firstTrainTime": firstTrainTime,
-            "frequency": frequency
+            trainName,
+            destination,
+            firstTrainTime,
+            frequency
         };
         return newTrain;
     }
