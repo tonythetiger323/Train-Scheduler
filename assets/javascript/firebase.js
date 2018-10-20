@@ -14,15 +14,10 @@ firebase.initializeApp(config);
 //reference to database
 var database = firebase.database();
 
+//making database.ref a variable so it can be used in the app.js for the purpose of code separation
+var trainRef = database.ref();
+
 //function to add newTrain data to firebase
 function fireAddTrain(inputObject) {
-    database.ref().push(inputObject);
+    trainRef.push(inputObject);
 }
-
-//firebase listener function to read from firebase, write to DOM, and write back to firebase
-
-database.ref().on("child_added", function (childSnapshot) {
-    var childSnapshotData = childSnapshot.val();
-    console.log(childSnapshotData);
-    return childSnapshotData;
-}); 

@@ -1,28 +1,26 @@
-//function to validate user actually entered data
 function validateUserInput(input) {
     if (!input) {
-        return;
+        return false;
     }
+    return true;
 }
-
 //function to get user input
 function getUserInput() {
     var trainName = $("#trainName").val().trim();
-    validateUserInput(trainName);
     var destination = $("#destination").val().trim();
-    validateUserInput(destination);
     var firstTrainTime = $("#firstTrainTime").val().trim();
-    validateUserInput(firstTrainTime);
     var frequency = $("#frequency").val().trim();
-    validateUserInput(frequency);
+    if (validateUserInput(trainName) && validateUserInput(destination) && validateUserInput(firstTrainTime) && validateUserInput(frequency)) {
 
-    newTrain = {
-        "trainName": trainName,
-        "destination": destination,
-        "firstTrainTime": firstTrainTime,
-        "frequency": frequency
-    };
-    return newTrain;
+        var newTrain = {
+            "trainName": trainName,
+            "destination": destination,
+            "firstTrainTime": firstTrainTime,
+            "frequency": frequency
+        };
+        return newTrain;
+    }
+    return undefined;
 }
 
 //function to clear input fields
@@ -32,7 +30,6 @@ function resetInput() {
     $("#firstTrainTime").val("");
     $("#frequency").val("");
 }
-
 
 
 
