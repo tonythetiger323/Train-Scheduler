@@ -36,7 +36,7 @@ trainRef.on("child_added", function (childSnapshot) {
 
     //format time back 12 hr
     var timeAmPm = moment(nextTrainTime).format("hh:mm");
-    console.log("timeAmPm", timeAmPM);
+    console.log("timeAmPm", timeAmPm);
 
     var newRow = $("<tr>").append(
         $("<td>").text(childSnapshotData.trainName),
