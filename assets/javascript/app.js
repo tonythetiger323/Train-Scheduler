@@ -32,7 +32,7 @@ trainRef.on("child_added", function (childSnapshot) {
     console.log("minNextTrain", minNextTrain);
     //get the time the next train arrives by taking the current time and adding how many minutes til next train to it
     var nextTrainTime = presentTime.add(minNextTrain, "minutes");
-    console.log("nextTrain", nextTrain);
+    console.log("nextTrainTime", nextTrainTime);
 
     //format time back 12 hr
     var timeAmPm = moment(nextTrainTime).format("hh:mm");
