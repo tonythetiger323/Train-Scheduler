@@ -37,8 +37,8 @@ trainRef.on("child_added", function (childSnapshot) {
         $("<td>").text(childSnapshotData.trainName),
         $("<td>").text(childSnapshotData.destination),
         $("<td>").text(childSnapshotData.frequency),
-        $("<td>").text(nextArrival),
-        $("<td>").text(minutes)
+        $("<td>").text(formatNextTrain),
+        $("<td>").text(minNext)
     );
 
     $("#train-table > tbody").append(newRow);
