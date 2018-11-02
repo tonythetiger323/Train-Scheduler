@@ -21,7 +21,7 @@ trainRef.on("child_added", function (childSnapshot) {
     var momentFirstTrain = moment(childSnapshotData.firstTrainTime, "HH:mm").subtract(10, "years").format("X");
 
     //get the remainder of dividng time between trains in minutes divided by the train frequency which is the first variable needed to determine homw many minutes until the next train arrives
-    var minutesRemain = presentTime.diff(moment.unix(momentFirstTrain), minutes) % childSnapshotData.frequency;
+    var minutesRemain = presentTime.diff(moment.unix(momentFirstTrain), "minutes") % childSnapshotData.frequency;
 
 
     //find out how many minutes until the next train arrives and stores it to a variable
