@@ -18,24 +18,25 @@ trainRef.on("child_added", function (childSnapshot) {
     //stores cuurent time into a variable
     var presentTime = moment();
     //converts train times from military time to 12 hour format and stores it to a variable
-    var momentFirstTrain = moment(childSnapshotData.firstTrainTime, "HH:mm").subtract(1, "years");
+    var momentFirstTrain = moment(childSnapshotData.firstTrainTime, "HH:mm")
     console.log("momentFirstTrain", momentFirstTrain);
 
     //find out the number of minutes between now and when the first train came and stores it to a variable
     var timeBetweenTrains = presentTime.diff(moment(momentFirstTrain), "minutes");
-
+    console.log("timeBetweenTrains", timeBetweenTrains);
     //get the remainder of diving time between trains in minutes divided by the train frequency which is the first variable needed to determine homw many minutes until the next train arrives
     var minutesRemain = timeBetweenTrains % childSnapshotData.frequency;
-
+    console.log("minutesRemain", minutesRemain);
     //find out how many minutes until the next train arrives and stores it to a variable
     var minNextTrain = childSnapshotData.frequency - minutesRemain;
-
+    console.log("minNextTrain", minNextTrain);
     //get the time the next train arrives by taking the current time and adding how many minutes til next train to it
     var nextTrainTime = presentTime.add(minNextTrain, "minutes");
+    console.log("nextTrain", nextTrain);
 
     //format time back 12 hr
     var timeAmPm = moment(nextTrainTime).format("hh:mm");
-
+    console.log("timeAmPm", timeAmPM);
 
     var newRow = $("<tr>").append(
         $("<td>").text(childSnapshotData.trainName),
