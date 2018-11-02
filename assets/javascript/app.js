@@ -32,6 +32,7 @@ trainRef.on("child_added", function (childSnapshot) {
 
     //format time back 12 hr
     var timeAmPm = moment(nextTrainTime).format("hh:mm");
+    console.log(timeAmPm);
 
 
     var newRow = $("<tr>").append(
