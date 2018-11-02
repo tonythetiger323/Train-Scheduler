@@ -18,14 +18,17 @@ trainRef.on("child_added", function (childSnapshot) {
     //stores cuurent time into a variable
     var presentTime = moment();
     //converts train times from military time to 12 hour format and stores it to a variable
-    let remainder = presentTime.diff(moment.unix(childSnapshotData.firstTrainTime, "minutes") % childSnapshotData.frequency);
-    let minutes = childSnapshot.frequency - remainder;
+    let convertTime = moment(firstTrainTime, "hh:mm").subtract(1, "years");
+    let diffTime = presentTime.diff(moment(convertTime), "minutes");
     //get the remainder of dividng time between trains in minutes divided by the train frequency which is the first variable needed to determine homw many minutes until the next train arrives
-
+    let remainder = diffTime % childSnapshotData.frequency;
+    let minNext = childSnapshotData.frequency - remainder;
+    let nextTrain = moment().add(minNext, "minutes");
+    let formatNextTrain = moment(nextTrain).format("hh:mm");
 
 
     //find out how many minutes until the next train arrives and stores it to a variable
-    let nextArrival = presentTime.add(minutes, 'm').format('hh:mm A');
+
 
     //get the time the next train arrives by taking the current time and adding how many minutes til next train to it
 
