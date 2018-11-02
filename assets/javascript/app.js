@@ -18,14 +18,14 @@ trainRef.on("child_added", function (childSnapshot) {
     //stores cuurent time into a variable
     var presentTime = moment();
     //converts train times from military time to 12 hour format and stores it to a variable
-    let remainder = presentTime.diff(moment.unix(childSnapshotData.firstTrainTime, "minutes") % frequency);
-    let minutes = frequency - remainder;
+    let remainder = presentTime.diff(moment.unix(childSnapshotData.firstTrainTime, "minutes") % childSnapshotData.frequency);
+    let minutes = childSnapshot.frequency - remainder;
     //get the remainder of dividng time between trains in minutes divided by the train frequency which is the first variable needed to determine homw many minutes until the next train arrives
 
 
 
     //find out how many minutes until the next train arrives and stores it to a variable
-    let nextArrial = presentTime().add(minutes, 'm').format('hh:mm A');
+    let nextArrival = presentTime.add(minutes, 'm').format('hh:mm A');
 
     //get the time the next train arrives by taking the current time and adding how many minutes til next train to it
 
@@ -34,8 +34,8 @@ trainRef.on("child_added", function (childSnapshot) {
         $("<td>").text(childSnapshotData.trainName),
         $("<td>").text(childSnapshotData.destination),
         $("<td>").text(childSnapshotData.frequency),
-        $("<td>").text(timeAmPm),
-        $("<td>").text(minNextTrain)
+        $("<td>").text(nextArrival),
+        $("<td>").text(minutes)
     );
 
     $("#train-table > tbody").append(newRow);
