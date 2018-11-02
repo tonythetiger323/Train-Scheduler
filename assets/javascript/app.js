@@ -19,6 +19,7 @@ trainRef.on("child_added", function (childSnapshot) {
     var presentTime = moment();
     //converts train times from military time to 12 hour format and stores it to a variable
     var momentFirstTrain = moment(childSnapshotData.firstTrainTime, "HH:mm").subtract(1, "years");
+    console.log("momentFirstTrain", momentFirstTrain);
 
     //find out the number of minutes between now and when the first train came and stores it to a variable
     var timeBetweenTrains = presentTime.diff(moment(momentFirstTrain), "minutes");
