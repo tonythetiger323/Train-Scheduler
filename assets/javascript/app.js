@@ -30,9 +30,7 @@ trainRef.on("child_added", function (childSnapshot) {
     //get the time the next train arrives by taking the current time and adding how many minutes til next train to it
     var nextTrainTime = presentTime.add(minNextTrain, "m").format('hh:mm A');
 
-    //format time back 12 hr
-    var timeAmPm = moment(nextTrainTime).format("hh:mm");
-    console.log(timeAmPm);
+
 
 
     var newRow = $("<tr>").append(
